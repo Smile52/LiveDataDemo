@@ -45,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+        mModel.mLoginRepository.getUserByLiveData().observe(this, new Observer<UserEntity>() {
+            @Override
+            public void onChanged(UserEntity entity) {
+                Log.e("dandy","数据库中读取出来的 "+entity.toString());
+            }
+        });
 
     }
 
@@ -61,11 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.login_read_btn)
     public void read(){
-        mModel.mLoginRepository.getUserByLiveData().observe(this, new Observer<UserEntity>() {
-            @Override
-            public void onChanged(UserEntity entity) {
-                Log.e("dandy","数据库中读取出来的 "+entity.toString());
-            }
-        });
+
     }
 }
