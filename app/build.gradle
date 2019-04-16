@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.smile.livedatademo"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "dyjc_${variant.versionCode}-${variant.versionName}.apk"
+        }
+    }
+
+        buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+        //如果第二步设置的是GBK,这里就是GBK，如果第二步设置的是UTF-8这里就是UTF-8
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    def lifecycle_version = "2.0.0"
+    def room_version = "2.1.0-alpha04"
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.+'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.+'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.+'
+    implementation 'com.squareup.retrofit2:retrofit:2.+'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+    implementation 'com.squareup.retrofit2:converter-gson:2.+'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+
+    implementation 'com.alibaba:fastjson:+'
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+
+}
