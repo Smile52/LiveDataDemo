@@ -9,7 +9,6 @@ public class BaseRepository<T> {
     private BaseHttpSubscriber<T> baseHttpSubscriber;
     private Flowable<BaseResult<T>> flowable;
 
-
     public BaseHttpSubscriber<T> send(){
         flowable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -20,7 +19,6 @@ public class BaseRepository<T> {
 
     /**
      * 初始化
-     * commonHttpSubscriber = new Common
      */
     public BaseRepository() {
         baseHttpSubscriber = new BaseHttpSubscriber<>();
@@ -30,6 +28,4 @@ public class BaseRepository<T> {
         this.flowable = flowable;
         return this;
     }
-
-
 }

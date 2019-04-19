@@ -54,21 +54,11 @@ public abstract class UserDataBases  extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                    /*    executors.diskIO().execute(() -> {
-                            // Add a delay to simulate a long-running operation
-                            //addDelay();
-                            // Generate the data for pre-population
-                            //UserDataBases database = UserDataBases.getInstance(appContext, executors);
 
-                            //insertData(database, users);
-                            // notify that the database was created and it's ready to be used
-                            //database.setDatabaseCreated();
-                        });*/
                     }
                 })
                 .build();
     }
-
 
     /**
      * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
@@ -86,6 +76,5 @@ public abstract class UserDataBases  extends RoomDatabase {
     private void setDatabaseCreated(){
         mIsDatabaseCreated.postValue(true);
     }
-
 
 }

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.login_pwd_num_et)
     AppCompatEditText mPwdText;
 
-
     private UserModel mModel;
     Observer<BaseResult<UserEntity>> observer;
 
@@ -33,22 +32,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         mModel=ViewModelProviders.of(this).get(UserModel.class);
-
 
        observer =new Observer<BaseResult<UserEntity>>() {
             @Override
             public void onChanged(BaseResult<UserEntity> userEntityBaseResult) {
                 Log.e("dandy","success ");
                 mModel.insertUser(userEntityBaseResult.getData());
-
             }
         };
         mModel.mLoginRepository.getUserByLiveData().observe(this, new Observer<UserEntity>() {
             @Override
             public void onChanged(UserEntity entity) {
-                Log.e("dandy","数据库中读取出来的 "+entity.toString());
+                if (entity==null){
+                    Log.e("dandy","数据库里面没有数据 ");
+
+                }else {
+                    Log.e("dandy","数据库中读取出来的 "+entity.toString());
+
+                }
             }
         });
 
@@ -56,17 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.login_submit_btn)
     public void onLogin(){
-
         mModel.login(mPhoneText.getText().toString(), mPwdText.getText().toString());
-        Log.e("dandy","eee");
-
         mModel.getUserLiveData().observe(this, observer);
-
-
-    }
-
-    @OnClick(R.id.login_read_btn)
-    public void read(){
-
     }
 }

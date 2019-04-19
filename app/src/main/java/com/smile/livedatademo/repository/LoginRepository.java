@@ -30,15 +30,6 @@ public class LoginRepository extends BaseRepository<UserEntity> implements ILogi
         mDatabases.userDao().insert(entity);
     }
 
-    public Flowable<UserEntity> getUser(){
-        return  mDatabases.userDao().getUserByRxJava();
-    }
-
-    public List<UserEntity> getUserNormal(){
-        return mDatabases.userDao().getUser();
-    }
-
-
 
     public void updateUser(UserEntity entity){
         mDatabases.userDao().update(entity);
@@ -52,7 +43,6 @@ public class LoginRepository extends BaseRepository<UserEntity> implements ILogi
     public LiveData<UserEntity>getUserByLiveData(){
         return mDatabases.userDao().getUserByLiveData();
     }
-
 
 
 }

@@ -8,7 +8,6 @@ public class UserEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     /**
      * user_id : 1000
      * username : 盖伦
